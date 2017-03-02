@@ -1,0 +1,29 @@
+---
+layout: default
+title:  "Norm properties of probability tensors"
+date:   2012-12-25 01:00:00 -0700
+categories: Probabiliity
+---
+
+{% include post-title.html %}
+
+
+
+The joint probability of $$n$$ random variables could be considered as a tensor of order-n. In the case where $$n=2$$, the joint and conditional matrices have many interesting properties as shown in the following lemmas.
+
+<h2 style="font-family:Times New Roman;font-style:italic;font-size:1.2em;color:blue;margin-left:0px">Lemma</h2>
+Let $$x$$, $$y$$ be discrete random variables such that $$x \in [n]$$ and $$y \in [m]$$, then the singular values of their joint probability $$p(x,y)$$ are all less than or equal to one.
+
+<h3 style="font-family:times;color:blue;margin-left: 0px">Proof</h3>
+We represent their joint probability by a matrix $[P]_{ij} = p(x=i, y=j)$ and calculate its largest singular value,
+\begin{align*}
+  \sigma_1(P) &= \max_{\|z\|_2=1} \|Pz\|_2 \\
+  &= \max_{\|z\|_2=1}  \left( \sum_i^n \left( \sum_j^m P_{ij} z_j \right)^2 \right)^{1/2} \\
+  &\leq \max_{\|z\|_2=1}  \sum_i^n | \sum_j^m P_{ij} z_j | \\
+  &\leq \sum_i^n \sum_j^m | P_{ij} | \\
+  &= \sum_i^n \sum_j^m P_{ij}  \\
+  &= 1
+\end{align*}
+where I've used the norm inequality in second step, and in the third step the condition that $\|z\|_2=1 \implies |z_i| \leq 1$. The last equality holds because probabilities must sum to 1. Thus, $\sigma_i(P) \leq \sigma_1(P) \leq 1, \forall i$.
+
+

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{ page.title }} - {{ site.name }}</title>
+
+    <!-- Atom feed discovery -->
+    {% feed_meta %}
+
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/css/default-layout.css" rel="stylesheet">
+
+    <!-- Python syntax highlighting CSS -->
+    <link href="/css/pygments.css" rel="stylesheet">
+
+    <!-- Ridiculously Responsive Social Sharing Buttons -->
+    <link href="/css/rrssb.css" rel="stylesheet">
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">{{ site.name }}</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li
+            {% if page.blogindex %}
+                class="active"
+            {% endif %}
+            ><a href="/">Home</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="https://twitter.com">Twitter</a></li>
+            <li><a href="mailto:horacetso@gmail.com">E-mail</a></li>
+            <li><a href="/feed.xml">Atom</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+
+      <div class="starter-template">
+          {{ content }}
+          <hr>
+          {% if page.reddit-url %}
+          <div id="discuss-footer">
+              {% include discuss-link.html %}
+          </div>
+          {% endif %}
+
+          {% unless page.blogindex %}
+            <nav>
+              <ul class="pager">
+                <li 
+                  {% if page.previous %}
+                      class="previous"
+                  {% else %}
+                      class="previous disabled"
+                  {% endif %}
+                >
+                <a href="{{ page.previous.url }}"><span aria-hidden="true">&larr;</span>Older</a></li>
+                <li><a href="/">Blog Index</a></li>
+                <li
+                  {% if page.next %}
+                      class="next"
+                  {% else %}
+                      class="next disabled"
+                  {% endif %}
+                ><a href="{{ page.next.url }}">Newer<span aria-hidden="true">&rarr;</span></a></li>
+              </ul>
+            </nav>
+          {% endunless %}
+          {% include sharing.html %}
+      </div>
+    </div><!-- /.container -->
+
+    <footer id="footer">
+        <small>Contact: <a href="mailto:horacetso@gmail.com">horacetso@gmail.com</a></small>
+        <p class="copyright">
+        <small>&copy; {{ site.time | date: '%Y' }} Horace W Tso. All Rights Reserved.</small>
+        </p>
+    </footer>
+
+    <!-- Google analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-66192540-1', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- MathJAX for inline math rendering -->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({ 
+          TeX: { 
+            extensions: ["amsthm.js", "AMSmath.js","AMSsymbols.js", "autobold.js", "newcommand.js"],
+            Macros: {
+              RR: "{\\bf R}",
+              bold: ["{\\bf #1}",1],
+              Abs: ['\\left\\lvert #2 \\right\\rvert_{\\text{#1}}', 2, ""]
+
+            },
+          }
+        });
+    </script>
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+
+    <!-- Ridiculously Responsive Social Sharing Buttons -->
+    <script src="/js/rrssb.min.js"></script>
+
+    {% if page.reddit-url or page.blogindex %}
+    <script src="/js/reddit-scores.js"></script>
+    <script>reddit_scores.fetch();</script>
+    {% endif %}
+  </body>
+</html>
+

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="http://localhost:4000/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.3.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-03-02T11:04:57-08:00</updated><id>http://localhost:4000//</id><title type="html">Hello big, big, BIG World</title><subtitle>Wow, this thing actually works. Pretty cool isn't it. I live in _config.yml.  Whoever google searches, they will find me here.
+</subtitle><entry><title type="html">How to hack the package dependency error in R</title><link href="http://localhost:4000/r_hacking/2016/12/06/hack-dep-err/" rel="alternate" type="text/html" title="How to hack the package dependency error in R" /><published>2016-12-06T11:34:08-08:00</published><updated>2016-12-06T11:34:08-08:00</updated><id>http://localhost:4000/r_hacking/2016/12/06/hack-dep-err</id><content type="html" xml:base="http://localhost:4000/r_hacking/2016/12/06/hack-dep-err/">&lt;div class=&quot;post-title&quot;&gt;
+  
+  
+  
+  &lt;h1&gt;How to hack the package dependency error in R&lt;/h1&gt;
+  
+  &lt;div class=&quot;post-info&quot;&gt;Created by
+    &lt;a href=&quot;mailto:horacetso@gmail.com&quot;&gt;Horace W Tso&lt;/a&gt;
+    on December 06, 2016.
+    
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You want to install a package, but R complains that it doesn’t like the version of R you got. The error message read something like this,&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ERROR: this R is version 3.2.1, package 'XYZ' requires R &amp;gt;=  3.2.2&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Typically, all you need to do is to upgrade your current version of R. But there are times when this is not desirable, or not even possilbe. Here is a hack you can try.&lt;/p&gt;
+
+&lt;p&gt;WARNING : There’s usually a good reason a package depends on a particular version of R. So if yours is way out of line of currency, this may not work. So be warned!&lt;/p&gt;
+
+&lt;p&gt;First, go to CRAN and download the source of the package, which is typically a zipped file with extension &lt;code class=&quot;highlighter-rouge&quot;&gt;.tar.gz&lt;/code&gt;. For example, the source file for the package &lt;code class=&quot;highlighter-rouge&quot;&gt;ModelMetrics&lt;/code&gt; is &lt;code class=&quot;highlighter-rouge&quot;&gt;ModelMetrics_1.1.0.tar.gz&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Uncompress it into a local directory. In most platforms (Windows, linux), it’s just a matter of double clicking it and an unzip app would open it in a window.&lt;/p&gt;
+
+&lt;p&gt;In the top level of the folder, you should see DESCRIPTION, a text file that you can open with any text editor. Open it and you will find a line&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Depends: R (&amp;gt;= 3.2.2)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, change the version to your current version 3.2.1. Save it. And install this local copy of the package. In R console, type&lt;/p&gt;
+
+&lt;pre class=&quot;terminal&quot;&gt;&lt;code&gt;install.packages(&quot;/local/path/to/ThePackage&quot;, repo=NULL, type=&quot;source&quot;)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Voila! The dependency error should go away and you should be able to complete the install.&lt;/p&gt;</content><summary type="html">How to hack the package dependency error in R
+  
+  Created by
+    Horace W Tso
+    on December 06, 2016.</summary></entry><entry><title type="html">Vectorize matrices in C algorithms</title><link href="http://localhost:4000/c_coding/2016/10/19/matrix2vector/" rel="alternate" type="text/html" title="Vectorize matrices in C algorithms" /><published>2016-10-19T12:34:08-07:00</published><updated>2016-10-19T12:34:08-07:00</updated><id>http://localhost:4000/c_coding/2016/10/19/matrix2vector</id><content type="html" xml:base="http://localhost:4000/c_coding/2016/10/19/matrix2vector/">&lt;div class=&quot;post-title&quot;&gt;
+  
+  
+  
+  &lt;h1&gt;Vectorize matrices in C algorithms&lt;/h1&gt;
+  
+  &lt;div class=&quot;post-info&quot;&gt;Created by
+    &lt;a href=&quot;mailto:horacetso@gmail.com&quot;&gt;Horace W Tso&lt;/a&gt;
+    on October 19, 2016.
+    
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;In case you wonder who on earth would want to turn a matrix into a vector, I’d give you two reasons.&lt;/p&gt;
+
+&lt;p&gt;The first is about coding. Writing aglorithms in C has tremendous speed advantage, but a steep price to pay in dealing with certain mathematical objects, such as matrices. Many libraries out there have the infrastructure to handle matrices, such as &lt;code class=&quot;highlighter-rouge&quot;&gt;boost&lt;/code&gt;. But in core C, it’s not so easy. I want to talk about coding with just the native C vector.&lt;/p&gt;
+
+&lt;p&gt;The second is about a connection with tensor mathematics. It turns out collapsing a matrix into a vector uses the same operator that reshape a higher order tensor to a matrix. In a later post, I will explain the reason for this type of transformation, and show some of its nice properties.&lt;/p&gt;
+
+&lt;p&gt;A matrix is an object where a value is placed in a two-dimensional “coordinate”. You can think of it as a map; if you give me a point in space, I’d’ tell you the value there.&lt;/p&gt;
+
+&lt;p&gt;Suppose I have a matrix &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt; of size &lt;script type=&quot;math/tex&quot;&gt;T \times K&lt;/script&gt;, where &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; is the number of rows (time steps)
+and &lt;script type=&quot;math/tex&quot;&gt;K&lt;/script&gt; the number of columns (hidden states),&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\mathbf{M} = \left.\left( 
+   \vphantom{\begin{array}{c}1\\1\\1\\1\end{array}}
+      \smash{\underbrace{
+         \begin{array}{ccccc}
+           x_1&amp; y_1 &amp;\cdots &amp;z_1\\
+           x_2&amp; y_2 &amp;\cdots &amp;z_2\\
+         \vdots&amp;&amp;\ddots&amp;\\
+           x_T&amp; y_T&amp; \cdots &amp;z_T
+           \end{array}
+            }_{K\text{ columns}}}
+         \right)\right\}
+    \,T\text{ rows} %]]&gt;&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;&lt;/script&gt;
+
+&lt;p&gt;and I want to represent this matrix as a vector. I could stack the &lt;script type=&quot;math/tex&quot;&gt;K&lt;/script&gt; columns together, or I could stack the &lt;script type=&quot;math/tex&quot;&gt;T&lt;/script&gt; rows to make a vector. I choose the later so that the states form a contagious block in every time step. This makes it easier to access in a loop. The vector has length &lt;script type=&quot;math/tex&quot;&gt;T*K&lt;/script&gt;,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;v = ( \underbrace{x_1, x_2 \ldots, x_T}_{T}, \underbrace{y_1, y_2, \ldots, y_T}_{T}, \ldots, \underbrace{z_1, \ldots, z_T}_{T} )&lt;/script&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;R&lt;/code&gt; code to do this conversion is,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;\texttt{v} = \texttt{as.double(t(M))}&lt;/script&gt;
+
+&lt;p&gt;To read an element of the orignal matrix from this vector, we need to map the 
+row and column coordinates to a linear offset. The mapping is,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(t, i) \; \longleftrightarrow \; \texttt{j = i*T + t}&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;t&lt;/script&gt; is the row index, &lt;script type=&quot;math/tex&quot;&gt;i&lt;/script&gt; the column index of the matrix &lt;script type=&quot;math/tex&quot;&gt;M&lt;/script&gt;, and &lt;script type=&quot;math/tex&quot;&gt;j&lt;/script&gt; is the corresponding
+element in the vector. For a C-style zero-based vector, the mapping is,&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;(t, i) \; \longleftrightarrow \; \texttt{j} = (i-1)*T + (t-1)&lt;/script&gt;
+
+&lt;p&gt;where &lt;script type=&quot;math/tex&quot;&gt;t = 1, \ldots, T&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;i = 1,\ldots,K&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;\texttt{j} =0, 1, \ldots, T*K -1&lt;/script&gt;.&lt;/p&gt;
+
+&lt;p&gt;For example as illustration, the element at row 6th and column 4th is accessed by&lt;/p&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;% &lt;![CDATA[
+\begin{align*}
+  M[6,4] &amp;= \texttt{v[3*T + 5]}
+  \\M[1,1] &amp;= \texttt{v[0]} 
+  \\M[T,K] &amp;= \texttt{v[(K-1)*T + T]}.
+\end{align*} %]]&gt;&lt;/script&gt;</content><summary type="html">Vectorize matrices in C algorithms
+  
+  Created by
+    Horace W Tso
+    on October 19, 2016.</summary></entry><entry><title type="html">Norm properties of probability tensors</title><link href="http://localhost:4000/probabiliity/2012/12/25/prob-norm/" rel="alternate" type="text/html" title="Norm properties of probability tensors" /><published>2012-12-25T00:00:00-08:00</published><updated>2012-12-25T00:00:00-08:00</updated><id>http://localhost:4000/probabiliity/2012/12/25/prob-norm</id><content type="html" xml:base="http://localhost:4000/probabiliity/2012/12/25/prob-norm/">&lt;div class=&quot;post-title&quot;&gt;
+  
+  
+  
+  &lt;h1&gt;Norm properties of probability tensors&lt;/h1&gt;
+  
+  &lt;div class=&quot;post-info&quot;&gt;Created by
+    &lt;a href=&quot;mailto:horacetso@gmail.com&quot;&gt;Horace W Tso&lt;/a&gt;
+    on December 25, 2012.
+    
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;The joint probability of &lt;script type=&quot;math/tex&quot;&gt;n&lt;/script&gt; random variables could be considered as a tensor of order-n. In the case where &lt;script type=&quot;math/tex&quot;&gt;n=2&lt;/script&gt;, the joint and conditional matrices have many interesting properties as shown in the following lemmas.&lt;/p&gt;
+
+&lt;h2 style=&quot;font-family:Times New Roman;font-style:italic;font-size:1.2em;color:blue;margin-left:0px&quot;&gt;Lemma&lt;/h2&gt;
+&lt;p&gt;Let &lt;script type=&quot;math/tex&quot;&gt;x&lt;/script&gt;, &lt;script type=&quot;math/tex&quot;&gt;y&lt;/script&gt; be discrete random variables such that &lt;script type=&quot;math/tex&quot;&gt;x \in [n]&lt;/script&gt; and &lt;script type=&quot;math/tex&quot;&gt;y \in [m]&lt;/script&gt;, then the singular values of their joint probability &lt;script type=&quot;math/tex&quot;&gt;p(x,y)&lt;/script&gt; are all less than or equal to one.&lt;/p&gt;
+
+&lt;h3 style=&quot;font-family:times;color:blue;margin-left: 0px&quot;&gt;Proof&lt;/h3&gt;
+&lt;p&gt;We represent their joint probability by a matrix $[P]&lt;em&gt;{ij} = p(x=i, y=j)$ and calculate its largest singular value,
+\begin{align*}
+  \sigma_1(P) &amp;amp;= \max&lt;/em&gt;{|z|&lt;em&gt;2=1} |Pz|_2 &lt;br /&gt;
+  &amp;amp;= \max&lt;/em&gt;{|z|&lt;em&gt;2=1}  \left( \sum_i^n \left( \sum_j^m P&lt;/em&gt;{ij} z_j \right)^2 \right)^{1/2} &lt;br /&gt;
+  &amp;amp;\leq \max_{|z|&lt;em&gt;2=1}  \sum_i^n | \sum_j^m P&lt;/em&gt;{ij} z_j | &lt;br /&gt;
+  &amp;amp;\leq \sum_i^n \sum_j^m | P_{ij} | &lt;br /&gt;
+  &amp;amp;= \sum_i^n \sum_j^m P_{ij}  &lt;br /&gt;
+  &amp;amp;= 1
+\end{align*}
+where I’ve used the norm inequality in second step, and in the third step the condition that $|z|_2=1 \implies |z_i| \leq 1$. The last equality holds because probabilities must sum to 1. Thus, $\sigma_i(P) \leq \sigma_1(P) \leq 1, \forall i$.&lt;/p&gt;</content><summary type="html">Norm properties of probability tensors
+  
+  Created by
+    Horace W Tso
+    on December 25, 2012.</summary></entry></feed>

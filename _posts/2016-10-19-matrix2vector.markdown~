@@ -1,0 +1,77 @@
+---
+layout: default
+title:  "Vectorize matrices in C algorithms"
+date:   2016-10-19 12:34:08 -0700
+categories: C_coding
+---
+
+{% include post-title.html %}
+
+In case you wonder who on earth would want to turn a matrix into a vector, I'd give you two reasons.
+
+The first is about coding. Writing aglorithms in C has tremendous speed advantage, but a steep price to pay in dealing with certain mathematical objects, such as matrices. Many libraries out there have the infrastructure to handle matrices, such as `boost`. But in core C, it's not so easy. I want to talk about coding with just the native C vector.
+
+The second is about a connection with tensor mathematics. It turns out collapsing a matrix into a vector uses the same operator that reshape a higher order tensor to a matrix. In a later post, I will explain the reason for this type of transformation, and show some of its nice properties.
+
+A matrix is an object where a value is placed in a two-dimensional "coordinate". You can think of it as a map; if you give me a point in space, I'd' tell you the value there.
+
+Suppose I have a matrix $$M$$ of size $$T \times K$$, where $$T$$ is the number of rows (time steps)
+and $$K$$ the number of columns (hidden states),
+
+$$\mathbf{M} = \left.\left( 
+                  \vphantom{\begin{array}{c}1\\1\\1\\1\end{array}}
+                  \smash{\underbrace{
+                      \begin{array}{ccccc}
+                             x_1& y_1 &\cdots &z_1\\
+                             x_2& y_2 &\cdots &z_2\\
+                             \vdots&&\ddots&\\
+                             x_T& y_T& \cdots &z_T
+                      \end{array}
+                      }_{K\text{ columns}}}
+              \right)\right\}
+              \,T\text{ rows}
+$$
+
+$$  $$
+
+and I want to represent this matrix as a vector. I could stack the $$K$$ columns together, or I could stack the $$T$$ rows to make a vector. I choose the later so that the states form a contagious block in every time step. This makes it easier to access in a loop. The vector has length $$T*K$$,
+
+$$
+v = ( \underbrace{x_1, x_2 \ldots, x_T}_{T}, \underbrace{y_1, y_2, \ldots, y_T}_{T}, \ldots, \underbrace{z_1, \ldots, z_T}_{T} )
+$$ 
+
+The `R` code to do this conversion is,
+
+$$
+  \texttt{v} = \texttt{as.double(t(M))}
+$$
+
+To read an element of the orignal matrix from this vector, we need to map the 
+row and column coordinates to a linear offset. The mapping is,
+
+$$
+(t, i) \; \longleftrightarrow \; \texttt{j = i*T + t}
+$$
+
+where $$t$$ is the row index, $$i$$ the column index of the matrix $$M$$, and $$j$$ is the corresponding
+element in the vector. For a C-style zero-based vector, the mapping is, 
+
+$$
+(t, i) \; \longleftrightarrow \; \texttt{j} = (i-1)*T + (t-1)
+$$
+
+where $$t = 1, \ldots, T$$, $$i = 1,\ldots,K$$ and $$\texttt{j} =0, 1, \ldots, T*K -1 $$. 
+
+For example as illustration, the element at row 6th and column 4th is accessed by 
+
+$$
+\begin{align*}
+  M[6,4] &= \texttt{v[3*T + 5]}
+  \\M[1,1] &= \texttt{v[0]} 
+  \\M[T,K] &= \texttt{v[(K-1)*T + T]}.
+\end{align*}
+$$
+
+
+
+
