@@ -11,14 +11,42 @@ In machine learning we encounter joint probability distribution on day one of wo
 
 I'll limit myself to discrete random variables here. So, we're looking at the joint probability of $$x$$ and $$y$$, where $$x$$ takes value in the integer set $$\{1,2,\ldots, n\}$$ and $$y$$ in $$\{1,2,\dots,m\}$$. The joint probability $$p(x,y)$$ can be represented as a matrix of size $$n \times m$$.
 
-$$p(x,y) = 
+$$[P]_{ij} = 
          \begin{bmatrix}
-           z_{11}&\cdots &z_{1m}\\
-           z_{21}&\cdots &z_{2m}\\
+           a_{11}&\cdots &a_{1m}\\
+           a_{21}&\cdots &a_{2m}\\
            \vdots&\ddots & \\
-           z_{n1}&\cdots &z_{nm}
+           a_{n1}&\cdots &a_{nm}
            \end{bmatrix}
 $$
+
+where $$[P]_{ij} = p(x=i, y=j)$$. So, each entry in the matrix is the probability that $$x$$ and $$y$$ take the respective value jointly ("and" is the key word). 
+
+> Lemma 1 : $$P$$ has rank one if and only if $$x$$ and $$y$$ are independent.
+
+The proof is very simple and I won't go into it here (see my writeup). But I want to bring out the intuition. If two random variables are independent, their joint density is just the product of the marginals, i.e. $$p(x,y) = p(x)p(y)$$. This is precisely the property that a rank-1 matrix has. A rank-1 matrix is the cross product of two vectors (singular vectors) scaled by a constant, which is its singular value. The singular value in this case is 1.0.
+
+So, what's the big deal? 
+
+There is a theorem (in fact it's the most important result in linear algebra) that says a matrix could be decomposed into a sum of vector cross-products. If we perform SVD on the probability matrix, the singular values tell us how close the random variables are to independence. 
+
+For example, if the largest singular value is 10.0, the second largest is 1.0, we could say the joint is pretty close to independence. On the other hand, if the first two singular values are 10.0 and 9.5, then $$x$$ and $$y$$ have stronger interdependence.
+
+I hope this makes sense. Let me know if you have questions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

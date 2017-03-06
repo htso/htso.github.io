@@ -13,7 +13,7 @@ Wise men of stock market would tell you that no one knows the absolute peak (and
 
 Okey, now you may ask, what basis supports any analysis and knowledge of a market top. I could resort to the dark art of technical analysis and give you a dozen reasons; Overbought, divergence, you name it.
 
-
+[...to be continued.]
 
 
 
