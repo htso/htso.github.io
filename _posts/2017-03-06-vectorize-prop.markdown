@@ -29,7 +29,10 @@ A direct corollary of this is the following statement, which is a little bit les
 >  \|v\|_2 = \sigma_1
 > $$
 >
-> where $$\sigma_1$$ is the largest singular value of $$M$$.
+> where $$\sigma_1$$ is the largest and the only non-zero singular value of $$M$$.
+
+To understand this statement, I like to visualize it this way. In the vector space that $$v$$ lives in, which is a higher dimension space than the column space of $$M$$, there is a nice regularity there. No matter how the matrix is chosen, as long as it is rank-1, the vector must lie on the ball with a radius equal to the singular value of $$M$$.
+
 
 
 
