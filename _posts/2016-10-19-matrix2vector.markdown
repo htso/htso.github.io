@@ -72,6 +72,6 @@ $$
 \end{align*}
 $$
 
-
+This is the vectorizing mechanics.  See my next blog on the implication of this procedure.
 
 

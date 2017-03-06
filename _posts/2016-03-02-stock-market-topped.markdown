@@ -11,7 +11,9 @@ The Dow Jones Industrial Average reached a record yesterday, an intraday high of
 
 Wise men of stock market would tell you that no one knows the absolute peak (and trough) until long after the fact. That's what make timing such an intriguing endeavour.
 
-Okey, now you'd ask, what evidence do I have to support any claim of analysis and knowledge of market top.
+Okey, now you may ask, what basis supports any analysis and knowledge of a market top. I could resort to the dark art of technical analysis and give you a dozen reasons; Overbought, divergence, you name it.
+
+
 
 
 
