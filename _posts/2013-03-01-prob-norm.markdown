@@ -13,16 +13,13 @@ I'll limit myself to discrete random variables here. So, we're looking at the jo
 
 $$\mathbf{p(x,y)} = \left.\left( 
    \vphantom{\begin{array}{c}1\\1\\1\\1\end{array}}
-      \smash{\underbrace{
+      
          \begin{array}{ccccc}
            z_{11}& z_{12} &\cdots &z_{1m}\\
            z_{21}& z_{22} &\cdots &z_{2m}\\
          \vdots&&\ddots&\\
            z_{n1}& z_{n2}& \cdots &z_{nm}
            \end{array}
-            }_{K\text{ columns}}}
-         \right)\right\}
-    \,T\text{ rows}
 $$
 
 
