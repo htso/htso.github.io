@@ -12,12 +12,12 @@ In machine learning we encounter joint probability distribution on day one of wo
 I'll limit myself to discrete random variables here. So, we're looking at the joint probability of $$x$$ and $$y$$, where $$x$$ takes value in the integer set $$\{1,2,\ldots, n\}$$ and $$y$$ in $$\{1,2,\dots,m\}$$. The joint probability $$p(x,y)$$ can be represented as a matrix of size $$n \times m$$.
 
 $$p(x,y) = 
-         \begin{matrix}
+         \begin{bmatrix}
            z_{11}& z_{12} &\cdots &z_{1m}\\
            z_{21}& z_{22} &\cdots &z_{2m}\\
            \vdots&&\ddots& \\
            z_{n1}& z_{n2}& \cdots &z_{nm}
-           \end{matrix}
+           \end{bmatrix}
 $$
 
 
