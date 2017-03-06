@@ -9,15 +9,15 @@ categories: Probabiliity
 
 In machine learning we encounter joint probability distribution on day one of work. For example, the MNIST digit classification problem is really about estimating the joint probability of the 10 digit labels and the image pixels, i.e., $$p(label, image)$$. So, needless to say, the joint density in general is of great interest. Without anything specific to a problem, what can we say about a joint probability function. It turns out there is an interesting property which I'm going to show you in this post.
 
-I'll limit myself to discrete random variables here. So, we're looking at the joint probability of $$x$$ and $$y$$, where $$x$$ takes value in the integer set $$\{1,2,\ldots, n\}$$ and $$y$$ in $$\{1,2,\dots,m\}$$. The joint probability $$p(x,y)$$ can be represented as a matrix of size $$n x m$$.
+I'll limit myself to discrete random variables here. So, we're looking at the joint probability of $$x$$ and $$y$$, where $$x$$ takes value in the integer set $$\{1,2,\ldots, n\}$$ and $$y$$ in $$\{1,2,\dots,m\}$$. The joint probability $$p(x,y)$$ can be represented as a matrix of size $$n \times m$$.
 
 $$p(x,y) = 
-         \begin{array}{ccccc}
+         \begin{matrix}
            z_{11}& z_{12} &\cdots &z_{1m}\\
            z_{21}& z_{22} &\cdots &z_{2m}\\
-           \vdots&&\ddots&\\
+           \vdots&&\ddots& \\
            z_{n1}& z_{n2}& \cdots &z_{nm}
-           \end{array}
+           \end{matrix}
 $$
 
 
