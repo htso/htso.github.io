@@ -14,9 +14,9 @@ The first property that carries over to its vector form is its norm. It's totall
 
 > Proposition 1 : For any matrix $$M$$,
 
-$$
-\|M\|_{F} = \|v\|_2
-$$ 
+> $$
+> \|M\|_{F} = \|v\|_2
+> $$ 
 
 > where $$v = vec(M)$$, the $$F$$ stands for the Frobenius norm.
 
@@ -24,9 +24,11 @@ $$
 A direct corollary of this is the following statement, which is a little bit less intuitive, but still just a consequence of the Prop 1.
 
 > Proposition 2 : If matrix M has rank 1, then
-$$
- \|v\|_2 = \sigma_1
-$$
+
+> $$
+>  \|v\|_2 = \sigma_1
+> $$
+
 > where $$\sigma_1$$ is the largest singular value of $$M$$.
 
 
