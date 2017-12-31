@@ -7,11 +7,23 @@ categories: Financial Markets
 
 {% include post-title.html %}
 
-The Dow Jones Industrial Average reached a record yesterday, an intraday high of 21,165, to be exact. For the faithful and the detractors, it's provocative to ask, what's the chance we've just witnessed a permanent top. I mean, from now till end of the world, investors would never see this level again. 
+(Warning : this is a technical piece about stochastic processes wrapped in a familiar subject. Would help to know the basics of brownian motion and first passage time.)
 
-Wise men of stock market would tell you that no one knows the absolute peak (and trough) until long after the fact. That's what make timing such an intriguing endeavour.
+The Dow Jones Industrial Average reached a record yesterday, an intraday high of 21,165. For the faithful and the detractors it's provocative to ask, what's the chance we've just witnessed a permanent top. By permance, I mean that investors would never see this level again from now till time infinity. 
 
-Okey, now you may ask, what basis supports any analysis and knowledge of a market top. I could resort to the dark art of technical analysis and give you a dozen reasons; Overbought, divergence, you name it.
+Wise men of stock market would tell you that no one knows the absolute peak (and trough) until long after the fact. That's what make market timing so difficult.
+
+Let's make a formal statement, which reads like this, 
+
+> Null Hypothesis : Dow Jones has peaked at 21,165.
+
+It'd be easy to reject this hypothesis. All we need is for the Dow to rise above this level. If that happens tomorrow, we are done.
+
+The case is more interesting if the Dow go down today, the day after, and keep on going. After a while, we seem to have evidence that what we saw yesterday was really the peak.   
+
+Let's say, after a couple of days, the Dow dropped $$x$$ points. The question is, what's the chance that it would not recover $$x$$ for at least $$n$$ days. Later on we would make $$n$$ go to infinity.
+
+
 
 [...to be continued.]
 
