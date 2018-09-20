@@ -9,6 +9,8 @@ categories: Financial Markets
 
 (Warning : this is a technical piece about stochastic processes wrapped in a familiar subject. Would help to know the basics of brownian motion and first passage time.)
 
+testing.....
+
 The Dow Jones Industrial Average reached a record yesterday, an intraday high of 21,165. For the faithful and the detractors it's provocative to ask, what's the chance we've just witnessed a permanent top. By permance, I mean that investors would never see this level again from now till time infinity. 
 
 Wise men of stock market would tell you that no one knows the absolute peak (and trough) until long after the fact. That's what make market timing so difficult.
