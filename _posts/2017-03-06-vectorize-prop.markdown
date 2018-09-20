@@ -26,7 +26,7 @@ A direct corollary of this is the following statement, which is a little bit les
 > Proposition 2 : If matrix M has rank 1, then
 >
 > $$
->  \|v\|_2 = \sigma_1, \lambda \in \gamma
+>  \|v\|_2 = \sigma_1
 > $$
 >
 > where $$\sigma_1$$ is the largest and the only non-zero singular value of $$M$$.
